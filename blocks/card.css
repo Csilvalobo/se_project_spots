@@ -1,0 +1,29 @@
+
+.card__image {
+    height: 413px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__like-button {
+    width: 23px;
+    height: 20px;
+    border: none;
+    background: none;
+    opacity: 40%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 627px) {
+    .card__image {
+        height: 288px;
+    }
+}

@@ -1,0 +1,12 @@
+.footer {
+    padding: 60px 0;
+}
+
+.footer__text {
+   font-family: Poppins, Arial, Helvetica, sans-serif;
+   font-size: 16px;
+   font-weight: 400;
+   text-align: center;
+   color: #212121B2;
+   opacity: 70%;
+}
