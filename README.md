@@ -7,18 +7,9 @@
 * Images  
   
 **Intro**
+This project is the first of many iterationss of what's to become a website were people can create profiles to share their photos and save other creators photos. For displaying the photos on their profiles I used a grid display centered so that the photos could always stay in the same place no matter where you see the website. Estabilishing the maximum width allows for multiple screen sizes as long as they are below that max width. If I were to improve anything in this project, it would be the way the pictures are displayed. I would estabilish a section to house all the photos that were liked, one for photos uploaded by the user and use the main page in the profile to show a slideshow of the favorite photos and/ or the pictures uploaded.
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Project Link
+Project video Link
 https://drive.google.com/file/d/1PXru2u_jvdS1YiLou0BNf5T0e6iu8ws9/view?usp=sharing
 
 Good luck and have fun!
