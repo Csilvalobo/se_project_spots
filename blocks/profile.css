@@ -43,7 +43,9 @@ margin-top: auto;
  background: none;
  border: none;
  display: flex;
+ align-items: center;
  cursor: pointer;
+ gap: 8px;
 }
 
 .profile__edit-btn:hover {
