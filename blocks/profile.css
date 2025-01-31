@@ -28,6 +28,7 @@ flex-direction: column;
     -webkit-box-orient: vertical;
     max-width: 420px;
     color: #212121;
+    line-height: 1;
 }
 
 .profile__description {
@@ -42,6 +43,7 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 color:#212121b2;
 max-width: 420px;
+line-height: 1;
 
 }
 
@@ -92,9 +94,10 @@ margin-top: auto;
 }
 
 .profile__name {
-    margin-bottom: 32px;
+    margin-bottom: 6px;
     font-size: 20px;
    max-width: 288px;
+   text-align: center;
 }
 
 .profile__description {
@@ -109,7 +112,7 @@ margin-top: auto;
 }
 
 .profile__add-btn {
-    margin-left: 0;
+    margin-left: 20px;
     max-width: 288px;
     width: 100%;
 }
