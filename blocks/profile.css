@@ -41,6 +41,7 @@ display: -webkit-box;
 -webkit-line-clamp: 3;
 -webkit-box-orient: vertical;
 color:#212121b2;
+max-width: 420px;
 
 }
 
@@ -53,6 +54,8 @@ margin-top: auto;
  cursor: pointer;
  gap: 8px;
  opacity: 0.7;
+ font-weight: 500;
+ color: #212121;
 }
 
 .profile__edit-btn:hover {
@@ -98,6 +101,11 @@ margin-top: auto;
     margin-bottom: 32px;
     font-size: 16px;
     max-width: 288px;
+    text-align: center;
+}
+
+.profile__edit-btn {
+    align-self: center;
 }
 
 .profile__add-btn {
