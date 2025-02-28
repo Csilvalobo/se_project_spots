@@ -24,6 +24,7 @@
     position: relative;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 8px;
 }
 
 .modal__close-btn {
@@ -34,6 +35,8 @@
     height: 40px;
     background-image: url(../images/Close.svg);
     background-position: center;
+    background-color: transparent;
+    border: none;
 }
 
 .modal__title {
@@ -52,11 +55,15 @@
 
 .modal__input {
 padding: 16px 12px;
+border-radius: 8px;
 }
 
 .modal__submit-btn {
     width: 156px;
     padding:18px 0;
+    border-radius: 8px;
+    background-color: #212121;
+    color: #fff;
 }
 
 @media screen and (max-width: 627px) {
