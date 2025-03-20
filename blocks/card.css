@@ -45,8 +45,9 @@
 }
 
 .card__like-button_liked {
-    background-image: url("../images/Liked.svg");
+    background-image: url("../images/heart_liked.svg");
     opacity: 1;
+    outline: none;
 }
 
 .card__like-button_liked:hover {
@@ -78,10 +79,16 @@
     position: absolute;
     top: 18px;
     right: 15px;
-    padding: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 .card__delete-btn:hover {
     opacity: 0.6;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    position: relative;
 }

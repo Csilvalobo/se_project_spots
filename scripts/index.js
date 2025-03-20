@@ -42,7 +42,7 @@ const modalElements = {
     },
     card: {
         container: document.querySelector("#add-card-modal"),
-        form: document.querySelector("#add-card-modal .modal__form"),
+        form: document.querySelector("#add-card-form"),
         closeButton: document.querySelector("#add-card-modal .modal__close-btn"),
         nameInput: document.querySelector("#add-card-name-input"),
         linkInput: document.querySelector("#add-card-link-input")
@@ -179,11 +179,11 @@ modalElements.edit.form.addEventListener('keydown', handleFormKeydown);
 modalElements.card.form.addEventListener('keydown', handleFormKeydown);
 
 function showInputError(inputElement) {
-    const errorElement = inputElement.parentElement.querySelector('.modal__error');
+    let errorElement = inputElement.parentElement.querySelector('.modal__error');
     if (!errorElement) {
-        const error = document.createElement('span');
-        error.className = 'modal__error';
-        inputElement.parentElement.appendChild(error);
+        errorElement = document.createElement('span');
+        errorElement.className = 'modal__error';
+        inputElement.parentElement.appendChild(errorElement);
     }
     
     if (!inputElement.validity.valid) {
@@ -213,3 +213,11 @@ function setupFormValidation(formElement) {
 
 setupFormValidation(modalElements.edit.form);
 setupFormValidation(modalElements.card.form);
+
+function handleDeleteCard(cardElement) {
+    const isConfirmed = window.confirm("Are you sure you want to delete this card?");  
+
+    if (isConfirmed) {
+      cardElement.remove();
+    }
+  }
