@@ -86,7 +86,7 @@
 
 .card__delete-btn:hover {
     opacity: 0.6;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #FF0000;
 }
 
 .card {
