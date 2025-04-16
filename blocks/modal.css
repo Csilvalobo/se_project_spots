@@ -99,6 +99,19 @@
     border: 1px solid rgba(33, 33, 33, 0.4);
 }
 
+.modal__input::placeholder {
+    color: #212121;
+    opacity: 30%;
+}
+
+.modal__input:hover {
+    border: 1px solid rgb(33, 33, 33);
+}
+
+.modal__input_type_error {
+    border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
 .modal__submit-btn {
     width: 156px;
     padding: 18px 0;

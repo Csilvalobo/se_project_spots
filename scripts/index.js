@@ -111,6 +111,26 @@ function closeModal(modal) {
     modal.classList.remove(CSS_CLASSES.MODAL_OPENED);
     document.removeEventListener("keydown", handleEscClose);
     modal.removeEventListener("mousedown", handleOverlayClose);
+    
+    // Get the form inside the modal if it exists
+    const form = modal.querySelector('.modal__form');
+    if (form) {
+        form.reset();
+        const inputs = [...form.querySelectorAll('.modal__input')];
+        const submitButton = form.querySelector('.modal__submit-btn');
+        
+        inputs.forEach((input) => {
+            const errorElement = document.querySelector(`#${input.id}-error`);
+            input.classList.remove('modal__input_type_error');
+            errorElement.classList.remove('modal__error');
+            errorElement.textContent = '';
+        });
+        
+        if (submitButton) {
+            submitButton.classList.add('modal__submit-btn_disabled');
+            submitButton.disabled = true;
+        }
+    }
 }
 
 function handleEscClose(evt) {
@@ -197,42 +217,6 @@ function handleFormKeydown(evt) {
 
 modalElements.edit.form.addEventListener("keydown", handleFormKeydown);
 modalElements.card.form.addEventListener("keydown", handleFormKeydown);
-
-function showInputError(inputElement) {
-    let errorElement = inputElement.parentElement.querySelector(".modal__error");
-    if (!errorElement) {
-        errorElement = document.createElement("span");
-        errorElement.className = "modal__error";
-        inputElement.parentElement.appendChild(errorElement);
-    }
-
-    if (!inputElement.validity.valid) {
-        if (inputElement.validity.valueMissing) {
-            errorElement.textContent = "This field is required.";
-        } else if (inputElement.validity.typeMismatch && inputElement.type === "url") {
-            errorElement.textContent = "Please enter a valid URL.";
-        } else if (inputElement.validity.tooShort) {
-            errorElement.textContent = `Minimum length is ${inputElement.minLength} characters.`;
-        } else if (inputElement.validity.tooLong) {
-            errorElement.textContent = `Maximum length is ${inputElement.maxLength} characters.`;
-        }
-    } else {
-        errorElement.textContent = "";
-    }
-}
-
-function setupFormValidation(formElement) {
-    const inputs = Array.from(formElement.querySelectorAll(".modal__input"));
-
-    inputs.forEach((input) => {
-        input.addEventListener("input", () => {
-            showInputError(input);
-        });
-    });
-}
-
-setupFormValidation(modalElements.edit.form);
-setupFormValidation(modalElements.card.form);
 
 function handleDeleteCard(cardElement) {
     const isConfirmed = window.confirm("Are you sure you want to delete this card?");
