@@ -116,6 +116,7 @@ function closeModal(modal) {
     const form = modal.querySelector('.modal__form');
     if (form) {
         form.reset();
+        resetFormValidation(form, validationConfig);
         const inputs = [...form.querySelectorAll('.modal__input')];
         const submitButton = form.querySelector('.modal__submit-btn');
         

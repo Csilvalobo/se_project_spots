@@ -46,6 +46,7 @@
     width: 100%;
     max-width: 90vw;
     max-height: 80vh;
+    border-radius: 8px;
 }
 
 .modal__close-btn {
