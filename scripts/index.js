@@ -115,7 +115,6 @@ function closeModal(modal) {
     const form = modal.querySelector('.modal__form');
     if (form) {
         form.reset();
-        resetValidation(form, validationConfig);
     }
 }
 
@@ -143,6 +142,7 @@ function handleEditProfileSubmit(evt) {
     evt.preventDefault();
     profileElements.name.textContent = modalElements.edit.nameInput.value;
     profileElements.description.textContent = modalElements.edit.descriptionInput.value;
+    disableButton(evt.submitter, validationConfig);
     closeModal(modalElements.edit.container);
 }
 
@@ -154,6 +154,7 @@ function handleAddCardSubmit(evt) {
     };
     const cardElement = getCardElement(inputValues);
     cardsList.prepend(cardElement);
+    disableButton(evt.submitter, validationConfig);
     modalElements.card.form.reset();
     closeModal(modalElements.card.container);
 }
@@ -162,6 +163,7 @@ profileElements.editButton.addEventListener("click", () => {
     modalElements.edit.nameInput.value = profileElements.name.textContent;
     modalElements.edit.descriptionInput.value = profileElements.description.textContent;
     openModal(modalElements.edit.container);
+    resetValidation(modalElements.edit.form, validationConfig);
 });
 
 modalElements.edit.closeButton.addEventListener("click", () => {
@@ -170,6 +172,7 @@ modalElements.edit.closeButton.addEventListener("click", () => {
 
 profileElements.addButton.addEventListener("click", () => {
     openModal(modalElements.card.container);
+    resetValidation(modalElements.card.form, validationConfig);
 });
 
 modalElements.card.closeButton.addEventListener("click", () => {
@@ -212,11 +215,3 @@ function handleDeleteCard(cardElement) {
     }
 }
 
-function resetValidation(formElement, config) {
-    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-    const buttonElement = formElement.querySelector(config.submitButtonSelector);
-    inputList.forEach((inputElement) => {
-        hideInputError(formElement, inputElement, config);
-    });
-    toggleButtonState(inputList, buttonElement, config);
-   }
