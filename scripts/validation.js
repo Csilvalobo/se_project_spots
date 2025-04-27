@@ -67,3 +67,8 @@ const enableValidation = (config) => {
 };
 
 enableValidation(validationConfig);
+
+const disableButton = (buttonElement, validationConfig) => {
+    buttonElement.disabled = true;
+    buttonElement.classList.add(validationConfig.inactiveButtonClass);
+};

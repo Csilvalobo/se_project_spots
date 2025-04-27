@@ -112,25 +112,10 @@ function closeModal(modal) {
     document.removeEventListener("keydown", handleEscClose);
     modal.removeEventListener("mousedown", handleOverlayClose);
     
-    // Get the form inside the modal if it exists
     const form = modal.querySelector('.modal__form');
     if (form) {
         form.reset();
-        resetFormValidation(form, validationConfig);
-        const inputs = [...form.querySelectorAll('.modal__input')];
-        const submitButton = form.querySelector('.modal__submit-btn');
-        
-        inputs.forEach((input) => {
-            const errorElement = document.querySelector(`#${input.id}-error`);
-            input.classList.remove('modal__input_type_error');
-            errorElement.classList.remove('modal__error');
-            errorElement.textContent = '';
-        });
-        
-        if (submitButton) {
-            submitButton.classList.add('modal__submit-btn_disabled');
-            submitButton.disabled = true;
-        }
+        resetValidation(form, validationConfig);
     }
 }
 
@@ -226,3 +211,12 @@ function handleDeleteCard(cardElement) {
         cardElement.remove();
     }
 }
+
+function resetValidation(formElement, config) {
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    inputList.forEach((inputElement) => {
+        hideInputError(formElement, inputElement, config);
+    });
+    toggleButtonState(inputList, buttonElement, config);
+   }
