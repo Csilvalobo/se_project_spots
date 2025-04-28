@@ -137,7 +137,6 @@ function handleEditProfileSubmit(evt) {
     evt.preventDefault();
     profileElements.name.textContent = modalElements.edit.nameInput.value;
     profileElements.description.textContent = modalElements.edit.descriptionInput.value;
-    disableButton(evt.submitter, validationConfig);
     closeModal(modalElements.edit.container);
 }
 
@@ -149,7 +148,6 @@ function handleAddCardSubmit(evt) {
     };
     const cardElement = getCardElement(inputValues);
     cardsList.prepend(cardElement);
-    disableButton(evt.submitter, validationConfig);
     modalElements.card.form.reset();
     closeModal(modalElements.card.container);
 }
