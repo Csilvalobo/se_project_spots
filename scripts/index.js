@@ -111,11 +111,6 @@ function closeModal(modal) {
     modal.classList.remove(CSS_CLASSES.MODAL_OPENED);
     document.removeEventListener("keydown", handleEscClose);
     modal.removeEventListener("mousedown", handleOverlayClose);
-    
-    const form = modal.querySelector('.modal__form');
-    if (form) {
-        form.reset();
-    }
 }
 
 function handleEscClose(evt) {
