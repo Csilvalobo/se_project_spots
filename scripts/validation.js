@@ -35,6 +35,11 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
+const disableButton = (buttonElement, validationConfig) => {
+    buttonElement.disabled = true;
+    buttonElement.classList.add(validationConfig.inactiveButtonClass);
+};
+
 const toggleButtonState = (inputList, buttonEl, config) => {
     if (hasInvalidInput(inputList)) {
         disableButton(buttonEl, config);    // Use the disableButton function instead
@@ -66,11 +71,6 @@ const enableValidation = (config) => {
 };
 
 enableValidation(validationConfig);
-
-const disableButton = (buttonElement, validationConfig) => {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(validationConfig.inactiveButtonClass);
-};
 
 function resetValidation(formElement, config) {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
