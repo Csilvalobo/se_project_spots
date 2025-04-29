@@ -148,10 +148,12 @@ function handleAddCardSubmit(evt) {
     };
     const cardElement = getCardElement(inputValues);
     cardsList.prepend(cardElement);
+    const submitButton = modalElements.card.form.querySelector(validationConfig.submitButtonSelector);
+    disableButton(submitButton, validationConfig);
     modalElements.card.form.reset();
     closeModal(modalElements.card.container);
 }
-
+    
 profileElements.editButton.addEventListener("click", () => {
     modalElements.edit.nameInput.value = profileElements.name.textContent;
     modalElements.edit.descriptionInput.value = profileElements.description.textContent;
@@ -165,7 +167,6 @@ modalElements.edit.closeButton.addEventListener("click", () => {
 
 profileElements.addButton.addEventListener("click", () => {
     openModal(modalElements.card.container);
-    resetValidation(modalElements.card.form, validationConfig);
 });
 
 modalElements.card.closeButton.addEventListener("click", () => {
@@ -208,3 +209,4 @@ function handleDeleteCard(cardElement) {
     }
 }
 
+enableValidation(validationConfig);
