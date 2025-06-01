@@ -1,0 +1,27 @@
+{
+  "name": "se_project_spots",
+  "version": "1.0.0",
+  "description": "* Intro  \r * Figma  \r * Images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Csilvalobo/se_project_spots.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Csilvalobo/se_project_spots/issues"
+  },
+  "homepage": "https://github.com/Csilvalobo/se_project_spots#readme",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^6.3.5"
+  }
+}

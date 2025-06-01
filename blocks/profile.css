@@ -1,121 +1,133 @@
 .profile {
-    display: flex;
-    padding: 34px 0 20px;
-    border-bottom: 1px solid rgba(33,33,33, 0.4);
-    font-family: Poppins,Arial, Helvetica, sans-serif;
-    font-weight: 500;
-}
-
-.profile__avatar{
-    height: 190px;
-    width: 190px;
-    margin-right: 20px;
-    border-radius: 8px;
+  margin: 0 auto;
+  padding: 40px 0 50px;
+  max-width: 880px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .profile__column {
-display: flex;
-flex-direction: column;
+  flex: 1;
 }
 
 .profile__name {
-    margin: 0 0 12px;
-    font-weight: 500;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    max-width: 420px;
-    color: #212121;
-    line-height: 1;
+  margin: 0;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .profile__description {
-margin: 0;
-font-family: Poppins,Arial, Helvetica, sans-serif;
-font-size: 16px;
-font-weight: 500;
-text-overflow: ellipsis;
-overflow: hidden;
-display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
-color:#212121b2;
-max-width: 420px;
-line-height: 1;
-
+  margin: 7px 0 0;
+  font-size: 18px;
+  color: #666;
 }
 
-.profile__edit-btn {
-margin-top: auto;
- background: none;
- border: none;
- display: flex;
- align-items: center;
- cursor: pointer;
- gap: 8px;
- opacity: 0.7;
- font-weight: 500;
- color: #212121;
-}
-
-.profile__edit-btn:hover {
-    opacity: 1;
+.profile__edit-btn,
+.profile__add-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #0050b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .profile__add-btn {
-    margin-left: auto;
-    width: 149px;
-    height: 52px;
-    border-radius: 8px;
-    gap: 8px;
-    background-color: #212121;
-    color: #FCF5E5;
-    align-self: flex-end;
-    cursor: pointer;
+  background-color: #007bff;
+}
+
+.profile__edit-btn:hover,
+.profile__add-btn:hover {
+  background-color: #003a80;
 }
 
 .profile__add-btn:hover {
-    opacity: 0.8;
+  background-color: #0056b3;
 }
 
+.profile__avatar {
+  display: block;
+  width: 190px;
+  height: 190px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+/* === Avatar Edit Hover Overlay === */
+
+.profile__avatar-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 190px;
+  width: 190px;
+  margin-right: 20px;
+}
+
+.profile__avatar-edit-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: url('../images/edit-icon.svg') center center no-repeat rgba(0, 0, 0, 0.5);
+  background-size: 32px 32px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 8px;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit-btn {
+  opacity: 1;
+}
+
+/* === Responsive === */
 @media screen and (max-width: 627px) {
-.profile {
+  .profile {
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
-}    
-.profile__avatar {
-    height: 80px;
+    text-align: center;
+  }
+
+  .profile__avatar {
     width: 80px;
+    height: 80px;
+    margin: 0 0 12px;
+  }
+
+  .profile__avatar-container {
+    width: 80px;
+    height: 80px;
     margin-bottom: 12px;
     margin-right: 0;
-}
+  }
 
-.profile__name {
-    margin-bottom: 6px;
-    font-size: 20px;
-   max-width: 288px;
-   text-align: center;
-}
+  .profile__avatar-edit-btn {
+    background-size: 24px 24px;
+  }
 
-.profile__description {
-    margin-bottom: 32px;
+  .profile__name {
+    font-size: 24px;
+  }
+
+  .profile__description {
     font-size: 16px;
-    max-width: 288px;
-    text-align: center;
-}
+  }
 
-.profile__edit-btn {
-    align-self: center;
-}
-
-.profile__add-btn {
-    margin-left: 20px;
-    max-width: 288px;
-    width: 100%;
-    margin-top: 20px;
-    margin-left: 0;
-}
+  .profile__edit-btn,
+  .profile__add-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+    margin-top: 12px;
+  }
 }
