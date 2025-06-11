@@ -8,21 +8,7 @@ export default class Api {
 
   // Handle server responses with robust error handling
   _checkResponse(res) {
-    return res.text().then((text) => {
-      try {
-        const data = text ? JSON.parse(text) : {};
-        if (!res.ok) {
-          const errorMessage = data.message || `Error ${res.status}`;
-          return Promise.reject(errorMessage);
-        }
-        return data;
-      } catch (e) {
-        if (!res.ok) {
-          return Promise.reject(`Error ${res.status}: ${text || res.statusText}`);
-        }
-        return Promise.reject('Unexpected server response format');
-      }
-    });
+   return res.ok? res.json():Promise.reject(res.status)
   }
 
   // Unified request method

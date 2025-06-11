@@ -1,10 +1,13 @@
 import Api from './api.js';
+import '../pages/index.css';
+
+const cardsList = document.querySelector('.cards__list');
 
 // === Initialize API ===
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "2aa7c51f-b9a1-4889-a781-e5abd2e65849",
     "Content-Type": "application/json"
   }
 });
@@ -13,7 +16,7 @@ const api = new Api({
 function toggleButtonLoading(button, isLoading, loadingText = "Saving...") {
   if (!button) return;
   if (isLoading) {
-    button.originalText = button.textContent;
+    button.originalText = button.textContent || 'Save';
     button.textContent = loadingText;
     button.disabled = true;
   } else {
@@ -28,15 +31,14 @@ let selectedCardId = null;
 
 // === Render a single card ===
 function renderCard(card) {
-  const cardTemplate = document.querySelector('#card-template').content.cloneNode(true);
-  const cardElement = cardTemplate.querySelector('.card');
+  const cardElement = document.querySelector('#card-template').content.querySelector('.card').cloneNode(true)
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
   const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-btn');
 
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
+  cardImage.src = card.link || '';
+  cardImage.alt = card.name || 'Card image';
   cardTitle.textContent = card.name;
 
   if (card.isLiked) {
@@ -49,11 +51,7 @@ function renderCard(card) {
 
     action.call(api, card._id)
       .then(updatedCard => {
-        if (updatedCard.isLiked) {
-          likeButton.classList.add('card__like-button_active');
-        } else {
-          likeButton.classList.remove('card__like-button_active');
-        }
+        likeButton.classList.toggle('card__like-button_active', updatedCard.isLiked);
       })
       .catch(err => {
         console.error('❌ Failed to toggle like:', err);
@@ -75,8 +73,9 @@ api.getAppData()
     document.querySelector('.profile__description').textContent = user.about;
     document.querySelector('.profile__avatar').src = user.avatar;
 
-    const cardsList = document.querySelector('.cards__list');
-    cardsList.innerHTML = '';
+    console.log(cards);
+
+ 
     cards.forEach(card => {
       const cardElement = renderCard(card);
       cardsList.appendChild(cardElement);
@@ -128,6 +127,10 @@ const cardNameInput = document.querySelector('#add-card-name-input');
 const cardLinkInput = document.querySelector('#add-card-link-input');
 const addCardModal = document.querySelector('#add-card-modal');
 const addCardButton = addCardForm.querySelector('.modal__submit-btn');
+const addCardBtn = document.querySelector('.profile__add-btn');
+addCardBtn.addEventListener('click', () => {
+  addCardModal.classList.add('modal_opened');
+});
 
 addCardForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -135,6 +138,12 @@ addCardForm.addEventListener('submit', (e) => {
 
   const name = cardNameInput.value.trim();
   const link = cardLinkInput.value.trim();
+
+  if (!name || !link) {
+    alert('Card name and image link are required.');
+    toggleButtonLoading(addCardButton, false);
+    return;
+  }
 
   api.createCard({ name, link })
     .then(newCard => {
@@ -205,6 +214,12 @@ updateAvatarForm.addEventListener('submit', (e) => {
 
   const avatar = avatarInput.value.trim();
 
+  if (!avatar) {
+    alert("Please enter a valid image link.");
+    toggleButtonLoading(avatarButton, false);
+    return;
+  }
+
   api.updateUserAvatar({ avatar })
     .then(updatedUser => {
       avatarImage.src = updatedUser.avatar;
@@ -219,3 +234,28 @@ updateAvatarForm.addEventListener('submit', (e) => {
       toggleButtonLoading(avatarButton, false);
     });
 });
+
+// === Modal UX: Close via ESC, outside click, or close button ===
+document.querySelectorAll('.modal__close-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    modal.classList.remove('modal_opened');
+  });
+});
+
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('mousedown', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('modal_opened');
+    }
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal.modal_opened').forEach(modal => {
+      modal.classList.remove('modal_opened');
+    });
+  }
+});
+
