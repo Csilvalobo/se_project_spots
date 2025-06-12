@@ -1,4 +1,4 @@
-import Api from './api.js';
+import Api from './Api.js';
 import '../pages/index.css';
 
 const cardsList = document.querySelector('.cards__list');
@@ -42,16 +42,16 @@ function renderCard(card) {
   cardTitle.textContent = card.name;
 
   if (card.isLiked) {
-    likeButton.classList.add('card__like-button_active');
+    likeButton.classList.add('card__like-button_liked');
   }
 
   likeButton.addEventListener('click', () => {
-    const isLiked = likeButton.classList.contains('card__like-button_active');
+    const isLiked = likeButton.classList.contains('card__like-button_liked');
     const action = isLiked ? api.dislikeCard : api.likeCard;
 
     action.call(api, card._id)
       .then(updatedCard => {
-        likeButton.classList.toggle('card__like-button_active', updatedCard.isLiked);
+        likeButton.classList.toggle('card__like-button_liked', updatedCard.isLiked);
       })
       .catch(err => {
         console.error('❌ Failed to toggle like:', err);
@@ -72,9 +72,6 @@ api.getAppData()
     document.querySelector('.profile__name').textContent = user.name;
     document.querySelector('.profile__description').textContent = user.about;
     document.querySelector('.profile__avatar').src = user.avatar;
-
-    console.log(cards);
-
  
     cards.forEach(card => {
       const cardElement = renderCard(card);
